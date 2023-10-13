@@ -8,7 +8,7 @@ print(A.shape, B.shape)
 A = cv.resize(A, (1000, 1000), interpolation=cv.INTER_LINEAR)
 B = cv.resize(B, (1000, 1000), interpolation=cv.INTER_LINEAR)
 
-n = 10
+n = 100
 
 # generate Gaussian pyramid for A
 G = A.copy()
@@ -46,19 +46,19 @@ for i in range(n - 1, 0, -1):
 LS = []
 for la, lb in zip(lpA, lpB):
     rows, cols, dpt = la.shape
-    ls = np.hstack((la[:, 0:int(cols / 2)], lb[:, int(cols / 2):]))
+    ls = np.hstack((la[:, :int(cols * 0.6)], lb[:, int(cols * 0.6):]))
     LS.append(ls)
 
 # now reconstruct
 ls_ = LS[0]
-for i in range(1, n):
+for i in range(n // 2, n):
     ls_ = cv.pyrUp(ls_)
     w, h, _ = LS[i].shape
     ls_ = cv.resize(ls_, (w, h))  # size keep same
     ls_ = cv.add(ls_, LS[i])
 # image with direct connecting each half
 
-real = np.hstack((A[:, :int(cols / 2)], B[:, int(cols / 2):]))
+real = np.hstack((A[:, :int(cols * 0.6)], B[:, int(cols * 0.6):]))
 cv.imwrite('Pyramid_blending.jpg', ls_)
 cv.imwrite('Direct_blending.jpg', real)
 
