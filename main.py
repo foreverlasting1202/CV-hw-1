@@ -2,8 +2,8 @@ import cv2 as cv
 import numpy as np
 import matplotlib.pyplot as plt
 
-A = cv.imread('pku.png')
-B = cv.imread('bit.png')
+A = cv.imread('ocean.jpg')
+B = cv.imread('astronomy.jpg')
 print(A.shape, B.shape)
 A = cv.resize(A, (1000, 1000), interpolation=cv.INTER_LINEAR)
 B = cv.resize(B, (1000, 1000), interpolation=cv.INTER_LINEAR)
