@@ -8,7 +8,7 @@ B = cv.imread('astronomy.jpg')
 A = cv.resize(A, (800, 800), interpolation=cv.INTER_LINEAR)
 B = cv.resize(B, (800, 800), interpolation=cv.INTER_LINEAR)
 
-n = 100
+n = 10
 
 # generate Gaussian pyramid for A
 G = A.copy()
