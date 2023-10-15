@@ -4,6 +4,7 @@ import numpy as np
 A = cv.imread('ocean.jpg')
 B = cv.imread('astronomy.jpg')
 
+# resize image
 A = cv.resize(A, (800, 800), interpolation=cv.INTER_LINEAR)
 B = cv.resize(B, (800, 800), interpolation=cv.INTER_LINEAR)
 
@@ -58,16 +59,16 @@ for i in range(n // 2, n):
 # image with direct connecting each half
 
 real = np.hstack((A[:, :int(800 * 0.6)], B[:, int(800 * 0.6):]))
-cv.imwrite('Lp_Pyramid_blending.jpg', ls_)
+cv.imwrite('Laplacian_blending.jpg', ls_)
 cv.imwrite('Direct_blending.jpg', real)
 
-# bgr与rgb转化
+# bgr convert to rgb
 
 real_rgb = cv.cvtColor(real, cv.COLOR_BGR2RGB)
 ls_rgb = cv.cvtColor(ls_, cv.COLOR_BGR2RGB)
 
 cv.imshow('Direct blending', real_rgb)
-cv.imshow('Lp_Pyramid blending', ls_rgb)
+cv.imshow('Laplacian blending', ls_rgb)
 
 cv.waitKey(0)
 cv.destroyAllWindows()
