@@ -1,12 +1,11 @@
 import cv2 as cv
 import numpy as np
-import matplotlib.pyplot as plt
 
 A = cv.imread('ocean.jpg')
 B = cv.imread('astronomy.jpg')
-print(A.shape, B.shape)
-A = cv.resize(A, (1000, 1000), interpolation=cv.INTER_LINEAR)
-B = cv.resize(B, (1000, 1000), interpolation=cv.INTER_LINEAR)
+
+A = cv.resize(A, (800, 800), interpolation=cv.INTER_LINEAR)
+B = cv.resize(B, (800, 800), interpolation=cv.INTER_LINEAR)
 
 n = 100
 
@@ -58,8 +57,8 @@ for i in range(n // 2, n):
     ls_ = cv.add(ls_, LS[i])
 # image with direct connecting each half
 
-real = np.hstack((A[:, :int(cols * 0.6)], B[:, int(cols * 0.6):]))
-cv.imwrite('Pyramid_blending.jpg', ls_)
+real = np.hstack((A[:, :int(800 * 0.6)], B[:, int(800 * 0.6):]))
+cv.imwrite('Lp_Pyramid_blending.jpg', ls_)
 cv.imwrite('Direct_blending.jpg', real)
 
 # bgr与rgb转化
@@ -68,7 +67,7 @@ real_rgb = cv.cvtColor(real, cv.COLOR_BGR2RGB)
 ls_rgb = cv.cvtColor(ls_, cv.COLOR_BGR2RGB)
 
 cv.imshow('Direct blending', real_rgb)
-cv.imshow('Pyramid blending', ls_rgb)
+cv.imshow('Lp_Pyramid blending', ls_rgb)
 
 cv.waitKey(0)
 cv.destroyAllWindows()
