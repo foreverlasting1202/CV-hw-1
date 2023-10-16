@@ -1,8 +1,8 @@
 import cv2 as cv
 import numpy as np
 
-A = cv.imread('ocean.jpg')
-B = cv.imread('astronomy.jpg')
+A = cv.imread('../Dataset/ocean.jpg')
+B = cv.imread('../Dataset/astronomy.jpg')
 
 # resize image
 A = cv.resize(A, (800, 800), interpolation=cv.INTER_LINEAR)
@@ -15,7 +15,7 @@ mask = 255 * np.ones(A.shape, A.dtype)
 # Poisson blending
 ls_ = cv.seamlessClone(A, B, mask, (320, 400), cv.MIXED_CLONE)
 
-cv.imwrite('Poisson_blending.jpg', ls_)
+cv.imwrite('../Result/Poisson_blending.jpg', ls_)
 
 # bgr convert to rgb
 
