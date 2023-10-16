@@ -1,8 +1,8 @@
 import cv2 as cv
 import numpy as np
 
-A = cv.imread('ocean.jpg')
-B = cv.imread('astronomy.jpg')
+A = cv.imread('../Dataset/ocean.jpg')
+B = cv.imread('../Dataset/astronomy.jpg')
 
 # resize image
 A = cv.resize(A, (800, 800), interpolation=cv.INTER_LINEAR)
@@ -59,8 +59,8 @@ for i in range(n // 2, n):
 # image with direct connecting each half
 
 real = np.hstack((A[:, :int(800 * 0.6)], B[:, int(800 * 0.6):]))
-cv.imwrite('Laplacian_blending.jpg', ls_)
-cv.imwrite('Direct_blending.jpg', real)
+cv.imwrite('../Result/Laplacian_blending.jpg', ls_)
+cv.imwrite('../Result/Direct_blending.jpg', real)
 
 # bgr convert to rgb
 
